@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TestDbUp.Configurations;
 using TestDbUp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,9 @@ builder.Services.AddDbContext<DbUpContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+
+DbUpConfig.InitDatabase();
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
